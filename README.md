@@ -1,5 +1,10 @@
 # Webistrano - Capistrano deployment the easy way
 
+## Version:
+  Upgraded to Rails 3.2.19 and tested with Ruby 2.1.2
+  @jigardoshi fork 
+
+
 ## About:
   Webistrano is a Web UI for managing Capistrano deployments. It lets you
   manage projects and their stages like test, production, and staging with
