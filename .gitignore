@@ -7,3 +7,5 @@ config/webistrano_config.rb
 .DS_Store
 .rake_tasks~
 public/stylesheets/*.css
+*.tmproj
+Gemfile.lock

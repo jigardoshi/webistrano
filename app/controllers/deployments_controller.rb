@@ -23,6 +23,12 @@ class DeploymentsController < ApplicationController
 
   # GET /projects/1/stages/1/deployments/new
   def new
+    @deployment = @stage.deployments.new
+    @deployment.task = params[:task]
+
+    # Allow description to be passed in via a URL parameter
+    @deployment.description = params[:description]
+    
     if params[:repeat]
       @original = @stage.deployments.find(params[:repeat])
       @deployment = @original.repeat
