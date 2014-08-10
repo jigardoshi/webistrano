@@ -54,9 +54,9 @@ class RecipesController < ApplicationController
   # PUT /recipes/1.xml
   def update
     @recipe = Recipe.find(params[:id])
-
+    puts @recipe.inspect
     respond_to do |format|
-      if @recipe.update_attributes((params[:recipe] || {}).merge(:user_id => current_user.id))
+      if @recipe.update_attributes(p)
         flash[:notice] = 'Recipe was successfully updated.'
         format.html { redirect_to recipe_url(@recipe) }
         format.xml  { head :ok }

@@ -44,11 +44,13 @@
 <% content_for(:page_scripts) do %>
   <script type="text/javascript">
 
-    function toggle_host(){
-      var host_id = /host_(\d+)/.exec(this.id)[1];
-      var checked = $('deployment_excluded_host_ids_' + host_id).getAttribute('checked');
+    function toggle_host(item){
+      var host_id = /host_(\d+)/.exec(item.attr("id"))[1];
+		console.log("host_id"+host_id);
 
-      if( checked == 'checked' ){
+      var checked = $('#deployment_excluded_host_ids_' + host_id).is(':checked'); 
+		console.log("Checked"+checked);
+      if( checked){
         enable_host(host_id);
       }else{
         disable_host(host_id);
@@ -56,32 +58,41 @@
     }
 
     function disable_host(host_id){
-      var on = $("host_" + host_id + "_on");
-      var off = $("host_" + host_id + "_off");
-
+      var on = $("#host_" + host_id + "_on");
+      var off = $("#host_" + host_id + "_off");
+		console.log("On:"+on);
+		console.log("Off:"+off);
       on.hide();
       off.show();
-      $('deployment_excluded_host_ids_' + host_id).writeAttribute('checked', 'checked');
-      on.up('tr').removeClassName('enabled_host');
-      on.up('tr').addClassName('disabled_host');
+      $('#deployment_excluded_host_ids_' + host_id).attr('checked', 'checked');
+      on.parent('tr').removeClass('enabled_host');
+      on.parent('tr').addClass('disabled_host');
     }
 
     function enable_host(host_id){
-      var on = $("host_" + host_id + "_on");
-      var off = $("host_" + host_id + "_off");
-
+      var on = $("#host_" + host_id + "_on");
+      var off = $("#host_" + host_id + "_off");
+		console.log("On:"+on);
+		console.log("Off:"+off);
       off.hide();
       on.show();
-      $('deployment_excluded_host_ids_' + host_id).writeAttribute('checked', false);
-      on.up('tr').addClassName('enabled_host');
-      on.up('tr').removeClassName('disabled_host');
+      $('#deployment_excluded_host_ids_' + host_id).attr('checked', false);
+      on.parent('tr').addClass('enabled_host');
+      on.parent('tr').removeClass('disabled_host');
     }
-
-    Event.observe(window, 'load', function(){
-      $$('tr.toggle_host').each(function(el){
-        el.observe('click', toggle_host);
-      })
-    });
+	$(document).ready(function(){
+      $('tr.toggle_host').each(function(){
+        // el.observe('click', toggle_host);
+		$(this).click(function(){
+			toggle_host($(this));
+		});
+      });		
+	});
+    // Event.observe(window, 'load', function(){
+    //   $$('tr.toggle_host').each(function(el){
+    //     el.observe('click', toggle_host);
+    //   })
+    // });
   </script>
 <% end %>
 

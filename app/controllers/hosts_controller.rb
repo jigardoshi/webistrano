@@ -2,6 +2,7 @@ class HostsController < ApplicationController
   respond_to :html, :xml, :json
   
   before_filter :ensure_admin, :only => [:new, :edit, :destroy, :create, :update]
+  protect_from_forgery :only =>[:show]
   
   # GET /hosts
   # GET /hosts.xml
