@@ -12,12 +12,7 @@ gem 'haml'
 gem 'thin'
 gem 'jquery-rails'
 
-group :development do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
-end
-
 group :test do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'test-unit', '2.0.9', :require => 'test/unit'
   gem 'mocha'
   gem 'factory_girl_rails'
