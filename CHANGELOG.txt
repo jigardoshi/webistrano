@@ -1,5 +1,4 @@
-
-edge
+* Update to Rails 3.2.19
 
 * Update to Rails 2.3.5
 
